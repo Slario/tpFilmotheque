@@ -89,7 +89,16 @@ private FilmService filmService;
 		ArrayList<Genre> retour = new ArrayList<Genre>();
         
 		Genre genre1 = new Genre("Horreur");
+		Genre genre2 = new Genre("Action");
+		Genre genre3 = new Genre("Policier");
+		Genre genre4 = new Genre("SF");
+
+		
 		retour.add(genre1);
+		retour.add(genre2);
+		retour.add(genre3);
+		retour.add(genre4);
+
 		
 		return retour;
 		
