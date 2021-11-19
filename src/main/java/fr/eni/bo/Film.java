@@ -9,7 +9,7 @@ public class Film {
 		
 	}
 	
-	public Film(String titre, Date anneDeSortie, Integer duree, ArrayList<Personne> acteurs, Personne realisateur,
+	public Film(String titre, String anneDeSortie, Integer duree, ArrayList<Personne> acteurs, Personne realisateur,
 			Genre genre, String synopsis) {
 		super();
 		this.titre = titre;
@@ -21,7 +21,7 @@ public class Film {
 		this.synopsis = synopsis;
 	}
 
-	public Film(String titre, Date anneDeSortie, Integer duree) {
+	public Film(String titre, String anneDeSortie, Integer duree) {
 		super();
 		this.titre = titre;
 		this.anneDeSortie = anneDeSortie;
@@ -34,7 +34,7 @@ public class Film {
 
 	private String titre;
 	
-	private Date anneDeSortie;
+	private String anneDeSortie;
 	
 	private Integer duree;
 	
@@ -86,11 +86,11 @@ public class Film {
 		this.titre = titre;
 	}
 
-	public Date getAnneDeSortie() {
+	public String getAnneDeSortie() {
 		return anneDeSortie;
 	}
 
-	public void setAnneDeSortie(Date anneDeSortie) {
+	public void setAnneDeSortie(String anneDeSortie) {
 		this.anneDeSortie = anneDeSortie;
 	}
 

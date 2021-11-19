@@ -6,10 +6,10 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/Film/IndexFilm.css">
+<link rel="stylesheet" href="/css/Film/IndexFilm.css">
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Liste des films</title>
 </head>
 
 
@@ -17,7 +17,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Titre</th>
       <th scope="col">Durée</th>
 
@@ -27,12 +26,14 @@
     <th:block th:each="film : ${films}">
     <tr>
     		<td><a th:href="@{${'film/detail/'+film.titre}}"><th:block th:text="${film.titre}"></th:block></a></td>
-    		<td><a href="/film/detail"><th:block th:text="${film.duree}"></th:block></a></td>
+    		<td><a th:href="@{${'film/detail/'+film.titre}}"><th:block th:text="${film.duree}"></th:block></a></td>
+    		
            </tr>
      </th:block>
   </tbody>
 </table>
-<a name="boutonAccueil" id="idBoutonAccueil" class="btn btn-primary" href="/" role="button">Retourner à l'accueil</a>
+<a id="idBoutonAccueil" class="btn btn-primary" href="/" role="button">Retourner à l'accueil</a>
+<a id="idBoutonAccueil" class="btn btn-primary" href="/film/new" role="button">Créer un nouveau film</a>
 
 </body>
 </html>
