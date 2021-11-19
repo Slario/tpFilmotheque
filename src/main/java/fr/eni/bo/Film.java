@@ -16,6 +16,16 @@ public class Film {
 	private Personne realisateur;
 	
 	private Genre genre;
+	
+	private String synopsis;
+
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
 
 	public ArrayList<Personne> getActeurs() {
 		return acteurs;
