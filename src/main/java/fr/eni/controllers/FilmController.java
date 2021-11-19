@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.eni.bo.Film;
 import fr.eni.bo.Genre;
+import fr.eni.bo.Personne;
 import fr.eni.services.FilmService;
 
 @Controller
 @RequestMapping("/film")
-@SessionAttributes({"films", "genres"})
+@SessionAttributes({"films", "genres", "acteurs", "realisateurs"})
 public class FilmController {
 	
 	@Autowired
@@ -36,6 +37,50 @@ private FilmService filmService;
 		retour.add(tarzan);
 		
 		return retour;
+		
+	}
+	
+	@ModelAttribute("acteurs")
+	public ArrayList<Personne> getActeurs(){
+		ArrayList<Personne> acteurs = new ArrayList<Personne>();
+        
+		Personne bPitt = new Personne("Pitt", "Brad");
+		Personne depardieu = new Personne("Depardieu", "Gérard");
+		Personne cassel = new Personne("Cassel", "Vincent");
+		Personne caprio = new Personne("DiCaprio", "Leonardo");
+		Personne delon = new Personne("Delon", "Alain");
+		Personne hardy = new Personne("Hardy", "Tom");
+
+		acteurs.add(bPitt);
+		acteurs.add(delon);
+		acteurs.add(depardieu);
+		acteurs.add(caprio);
+		acteurs.add(cassel);
+		acteurs.add(hardy);
+	
+		return acteurs;
+		
+	}
+	
+	@ModelAttribute("realisateurs")
+	public ArrayList<Personne> getRealisateurs(){
+		ArrayList<Personne> realisateurs = new ArrayList<Personne>();
+        
+		Personne scors = new Personne("Scorsese", "Martin");
+		Personne godard = new Personne("Godard", "Jean-Luc");
+		Personne spiel = new Personne("Spielberg", "Steven");
+		Personne tarant = new Personne("Tarantino", "Quentin");
+		Personne lynch = new Personne("Lynch", "David");
+		Personne allen = new Personne("Allen", "Woody");
+
+		realisateurs.add(scors);
+		realisateurs.add(godard);
+		realisateurs.add(spiel);
+		realisateurs.add(tarant);
+		realisateurs.add(lynch);
+		realisateurs.add(allen);
+	
+		return realisateurs;
 		
 	}
 	

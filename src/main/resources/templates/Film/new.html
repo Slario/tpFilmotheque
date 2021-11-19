@@ -13,33 +13,53 @@
 </head>
 <body>
 
-<form>
-  
-    <div class="mb-3">
-      <label for="idTitre" class="form-label">Titre</label>
-      <input type="text" id="idTitre" name="film.titre" class="form-control" placeholder="choisissez un titre">
-    </div>
-    <div class="mb-3">
-      <label for="disabledTextInput" class="form-label">Disabled input</label>
-      <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-<div class="row g-3 align-items-center">
-  <div class="col-auto">
-    <label for="inputPassword6" class="col-form-label">Password</label>
-  </div>
-  <div class="col-auto">
-    <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-  </div>
-  <div class="col-auto">
-    <span id="passwordHelpInline" class="form-text">
-      Must be 8-20 characters long.
-    </span>
-  </div>
-</div>
+	<form>
 
-<a id="idBoutonAccueil" class="btn btn-primary" href="/film" role="button">Retourner la liste des films</a>
+		<div class="mb-3">
+			<label for="idTitre" class="form-label">Titre</label> <input
+				type="text" id="idTitre" name="film.titre" class="form-control"
+				placeholder="choisissez un titre">
+		</div>
+		<div class="mb-3">
+			<label for="idAnneeDeSortie" class="form-label">Année de
+				sortie</label> <input type="text" id="idAnneeDeSortie"
+				name="film.anneDeSortie" class="form-control"
+				placeholder="Disabled input">
+		</div>
+		<div class="mb-3">
+			<label for="idDuree" class="form-label">Durée</label> <input
+				type="text" id="idDuree" name="film.duree" class="form-control"
+				placeholder="Disabled input">
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+
+				<select class="form-select"
+					multiple>
+					<option value="" disabled selected>Acteurs du film</option>
+					<th:block th:each="acteur : ${acteurs}">
+						<option th:value="${acteur.nom}"><th:block
+								th:text="${acteur.nom + ' ' + acteur.prenom}"></th:block></option>
+					</th:block>
+				</select>
+
+			</div>
+		</div>
+
+		<select class="form-select" aria-label="Default select example">
+			<th:block th:each="realisateur : ${realisateurs}">
+				<option th:value="${realisateur.nom}"><th:block
+						th:text="${realisateur.nom + ' ' + realisateur.prenom}"></th:block></option>
+			</th:block>
+		</select>
+
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	
+
+	<a id="idBoutonAccueil" class="btn btn-primary" href="/film"
+		role="button">Retourner la liste des films</a>
 
 </body>
 </html>
