@@ -1,28 +1,26 @@
 package fr.eni.controllers;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.eni.bo.Film;
+import fr.eni.bo.Genre;
 import fr.eni.services.FilmService;
 
 @Controller
 @RequestMapping("/film")
-@SessionAttributes("films")
+@SessionAttributes({"films", "genres"})
 public class FilmController {
 	
+	@Autowired
 private FilmService filmService;
 	
 	@ModelAttribute("films")
@@ -38,6 +36,18 @@ private FilmService filmService;
 		retour.add(tarzan);
 		
 		return retour;
+		
+	}
+	
+	@ModelAttribute("genres")
+	public ArrayList<Genre> getGenres(){
+		ArrayList<Genre> retour = new ArrayList<Genre>();
+        
+		Genre genre1 = new Genre("Horreur");
+		retour.add(genre1);
+		
+		return retour;
+		
 	}
 	
 	@GetMapping({"/", "/index", ""})
@@ -47,16 +57,14 @@ private FilmService filmService;
 	}
 	
 	@GetMapping("/detail")
-	public String detailFilm(@RequestParam String titre, Model model) {
+	public String detailFilm(String titre, Model model) {
 		Film detailFilm = filmService.detail(titre);
 		model.addAttribute("detailFilm", detailFilm);
-		return "detailFilm" ; 
+		return "Film/detailFilm" ; 
 	}
 	
 	@GetMapping({"/new"})
 	public String newFilmGet(Model model) {
-		
-		
 		
 		return "Film/new";
 	}
@@ -64,7 +72,7 @@ private FilmService filmService;
 	@PostMapping({"/new"})
 	public String newFilmPost(Model model) {
 		
-		
+		//TODO : gestion de la réception du formulaire de création d'un film
 		
 		return "redirect:Film/index";
 	}

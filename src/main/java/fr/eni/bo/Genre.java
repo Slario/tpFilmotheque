@@ -8,6 +8,11 @@ public class Genre {
 		return genre;
 	}
 
+	public Genre(String genre) {
+		super();
+		this.genre = genre;
+	}
+
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}

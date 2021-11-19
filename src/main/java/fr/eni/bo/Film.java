@@ -1,13 +1,14 @@
 package fr.eni.bo;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Film {
 	
 	public Film() {
 		
 	}
+	
+	
 	
 	public Film(String titre, String anneDeSortie, Integer duree, ArrayList<Personne> acteurs, Personne realisateur,
 			Genre genre, String synopsis) {

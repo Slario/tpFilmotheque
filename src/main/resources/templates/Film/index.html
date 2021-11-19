@@ -25,8 +25,8 @@
   <tbody>
     <th:block th:each="film : ${films}">
     <tr>
-    		<td><a th:href="@{${'film/detail/'+film.titre}}"><th:block th:text="${film.titre}"></th:block></a></td>
-    		<td><a th:href="@{${'film/detail/'+film.titre}}"><th:block th:text="${film.duree}"></th:block></a></td>
+    		<td><a th:href="@{${'film/detail?titre='+film.titre}}"><th:block th:text="${film.titre}"></th:block></a></td>
+    		<td><a th:href="@{${'film/detail?titre='+film.titre}}"><th:block th:text="${film.duree}"></th:block></a></td>
     		
            </tr>
      </th:block>
