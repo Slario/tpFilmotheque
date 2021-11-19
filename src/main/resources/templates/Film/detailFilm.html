@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Détail d'un film</title>
+
+<link rel="stylesheet"
+	th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/bootstrap-3.3.7/css/bootstrap-theme.min.css}">
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/bootstrap-3.3.7/js/bootstrap.min.js}"></script>
+<link rel="stylesheet" th:href="@{/css/commun.css}">
+<link rel="icon" th:href="@{/img/favicon.ico}" />
+</head>
+<body>
+
+	<h2>Detail du film</h2>
+
+	<div>
+		<h1>
+			<span th:text="${detailFilm.titre}"></span>
+		</h1>
+	</div>
+
+	<div th:if="${{detailFilm.anneDeSortie} }">
+		Année de sortie : <span th:text="${detailFilm.anneDeSortie}"></span>
+	</div>
+
+	<div th:if="${{detailFilm.duree} }">
+		Duree : <span th:text="${detailFilm.duree}"></span>
+	</div>
+
+	<div th:if="${{detailFilm.realisateur} }">
+		Realisateur : <span th:text="${detailFilm.realisateur.nom}"></span><span
+			th:text="${detailFilm.realisateur.prenom}"></span>
+	</div>
+
+	<div th:if="${{detailFilm.genre} }">
+		Categorie : <span th:text="${detailFilm.genre.genre}"></span>
+	</div>
+	
+	<div th:if="${{detailFilm.acteurs} }">
+		Acteurs : <div th:each="acteur: ${detailFilm.acteurs}">
+		<p><span th:text="${acteur.prenom}"></span><span></span><span th:text="${acteur.nom}"></span></p>
+	</div>
+	</div>
+	<div th:if="${{detailFilm.synopsis} }">
+		Resumé :
+		<p>
+			<span th:text="${detailFilm.synopsis}"></span>
+		</p>
+	</div>
+	
+</body>
+</html>

@@ -28,6 +28,10 @@ public class Film {
 		this.duree = duree;
 	}
 
+	public Film(String titre2) {
+		this.titre = titre2;
+	}
+
 	private String titre;
 	
 	private Date anneDeSortie;

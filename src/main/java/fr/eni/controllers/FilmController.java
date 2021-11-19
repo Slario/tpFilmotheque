@@ -8,15 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.eni.bo.Film;
+import fr.eni.services.FilmService;
 
 @Controller
 @RequestMapping("/film")
 @SessionAttributes("films")
 public class FilmController {
 	
+private FilmService filmService;
 	
 	@ModelAttribute("films")
 	public ArrayList<Film> getFilms(){
@@ -36,6 +39,14 @@ public class FilmController {
 	public String index(Model model) {
 		
 		return "Film/index";
+	}
+	
+	@GetMapping("/detail")
+	public String detailFilm(@RequestParam String titre, Model model) {
+		
+		Film detailFilm = filmService.detail(titre);
+		model.addAttribute("detailFilm", detailFilm);
+		return "detailFilm" ; 
 	}
 
 }
