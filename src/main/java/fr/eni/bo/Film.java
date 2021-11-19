@@ -5,6 +5,29 @@ import java.util.Date;
 
 public class Film {
 	
+	public Film() {
+		
+	}
+	
+	public Film(String titre, Date anneDeSortie, Integer duree, ArrayList<Personne> acteurs, Personne realisateur,
+			Genre genre, String synopsis) {
+		super();
+		this.titre = titre;
+		this.anneDeSortie = anneDeSortie;
+		this.duree = duree;
+		this.acteurs = acteurs;
+		this.realisateur = realisateur;
+		this.genre = genre;
+		this.synopsis = synopsis;
+	}
+
+	public Film(String titre, Date anneDeSortie, Integer duree) {
+		super();
+		this.titre = titre;
+		this.anneDeSortie = anneDeSortie;
+		this.duree = duree;
+	}
+
 	private String titre;
 	
 	private Date anneDeSortie;
