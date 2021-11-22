@@ -33,6 +33,13 @@ public class Film {
 		this.titre = titre2;
 	}
 
+	public Film(String titre, String anneDeSortie, Integer duree, Personne realisateur) {
+		this.titre = titre;
+		this.anneDeSortie = anneDeSortie;
+		this.duree = duree;
+		this.realisateur = realisateur;
+	}
+
 	private String titre;
 	
 	private String anneDeSortie;

@@ -1,6 +1,7 @@
 package fr.eni.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import fr.eni.bo.Avis;
 import fr.eni.bo.Film;
 import fr.eni.bo.Genre;
 import fr.eni.bo.Personne;
@@ -18,16 +20,19 @@ import fr.eni.services.FilmService;
 
 @Controller
 @RequestMapping("/film")
-@SessionAttributes({"films", "genres", "acteurs", "realisateurs"})
+@SessionAttributes({"films", "genres", "acteurs", "realisateurs","listeAvis"})
 public class FilmController {
 	
 	@Autowired
 private FilmService filmService;
 	
+	
+	
+	
+	
 	@ModelAttribute("films")
 	public ArrayList<Film> getFilms(){
 		ArrayList<Film> retour = new ArrayList<Film>();
-        
 		Film terminator = new Film("Terminator", "1997", 120);
 		Film matrix = new Film("Matrix", "2003", 180);
 		Film tarzan = new Film("Tarzan", "1985", 150);
@@ -64,8 +69,8 @@ private FilmService filmService;
 	
 	@ModelAttribute("realisateurs")
 	public ArrayList<Personne> getRealisateurs(){
-		ArrayList<Personne> realisateurs = new ArrayList<Personne>();
-        
+		
+		ArrayList<Personne> realisateurs = new ArrayList<Personne>();	
 		Personne scors = new Personne("Scorsese", "Martin");
 		Personne godard = new Personne("Godard", "Jean-Luc");
 		Personne spiel = new Personne("Spielberg", "Steven");
@@ -104,6 +109,7 @@ private FilmService filmService;
 		
 	}
 	
+	
 	@GetMapping({"/", "/index", ""})
 	public String index(Model model) {
 		
@@ -113,7 +119,11 @@ private FilmService filmService;
 	@GetMapping("/detail")
 	public String detailFilm(String titre, Model model) {
 		Film detailFilm = filmService.detail(titre);
+		detailFilm.setAnneDeSortie(titre);
+		detailFilm.setDuree(123);
+		detailFilm.setSynopsis("blablablaaaa");
 		model.addAttribute("detailFilm", detailFilm);
+		//model.addAttribute("detailFilm", detailFilm);
 		return "Film/detailFilm" ; 
 	}
 	
@@ -131,5 +141,27 @@ private FilmService filmService;
 		return "redirect:Film/index";
 	}
 		
+	
+	@ModelAttribute("listeAvis")
+	public ArrayList<Avis> initListeAvis() {
+		return new ArrayList<Avis>();
+	}
+	
+	@GetMapping({ "/avis/editer"})
+	public String afficherFormulaire(Model model) {
+		model.addAttribute("avis", new Avis());
+		return "Film/avis";
+	}
+
+	@PostMapping("/avis/post")
+	public String ajoutAvis(@ModelAttribute("avis") Avis avis, @ModelAttribute("listeAvis") List<Avis> listeAvis) {
+		listeAvis.add(avis);
+		return "Film/index";
+	}
+
+	@GetMapping("/listeAvis")
+	public String afficherListeAvis() {
+		return "Film/index";
+	}
 
 }

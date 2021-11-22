@@ -19,16 +19,25 @@
     <tr>
       <th scope="col">Titre</th>
       <th scope="col">Durée</th>
+      <th scope="col">Catégorie</th>
+      <th scope="col">Réalisateur</th>
 
     </tr>
   </thead>
   <tbody>
     <th:block th:each="film : ${films}">
     <tr>
-    		<td><a th:href="@{${'film/detail?titre='+film.titre}}"><th:block th:text="${film.titre}"></th:block></a></td>
-    		<td><a th:href="@{${'film/detail?titre='+film.titre}}"><th:block th:text="${film.duree}"></th:block></a></td>
     		
+    		<td><a th:href="@{${'film/detail?titre='+film.titre}}"><th:block th:text="${film.titre}"></th:block></a></td>
+    		<td><th:block th:text="${film.duree}"></th:block></td>
+    		<td th:each="genre : ${genres}"><span th:text="${genre.genre}"></span></td> 
+    		<td rowspan="1">
+    		<th:block th:each="realisateur : ${realisateurs}"><span th:text="${realisateur.nom + ' ' + realisateur.prenom}"></span><br>
+    		</th:block>
+			</td >
+			
            </tr>
+          
      </th:block>
   </tbody>
 </table>
